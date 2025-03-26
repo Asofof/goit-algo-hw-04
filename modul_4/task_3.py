@@ -1,22 +1,11 @@
 import os # Модуль для работы с файловой системой
 import sys # Модуль для работы с аргументами командной строки
 from colorama import init, Fore # Модуль для работы с цветным выводом в консоли
-import subprocess  # Для выполнения команд из Python
-
-# Функция для создания requirements.txt
-def create_requirements():
-    try:
-        subprocess.run(["pip", "freeze", ">", "requirements.txt"], shell=True, check=True)
-        print(Fore.GREEN + "Файл requirements.txt успешно создан!" + Fore.RESET)
-    except subprocess.CalledProcessError:
-        print(Fore.RED + "Ошибка при создании файла requirements.txt!" + Fore.RESET)
 
 # Получаем список всех файлов и папок в указанной директории
 def print_directory_tree(root_dir, indent=""): 
-
 # Сортируем список по алфавиту.
     entries = sorted(os.listdir(root_dir))
-
 # Проходим по каждому элементу в списке
     for i, entry in enumerate(entries):
 # Строим полный путь к текущему файлу/папке
@@ -43,9 +32,6 @@ if __name__ == "__main__":
         print(Fore.RED + "Помилка: Вказаний шлях не є директорією!" + Fore.RESET)
         sys.exit(1)
     
-# Создаем requirements.txt перед обработкой
-    create_requirements()
-
 # Выводим путь к директории сине-зеленым цветом
     print(Fore.CYAN + directory + Fore.RESET)
 # Вызываем функцию, чтобы вывести структуру файлов и папок внутри указанной директории
